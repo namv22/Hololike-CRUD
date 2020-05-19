@@ -1,9 +1,8 @@
 <template>
 <div id="app">
-    <div>
-        <h1>Add Post</h1>
+    <b-card border-variant="success" header="Add Post" class="card-add">
         <label for="input-live">Name:</label>
-        <b-form-input id="input-live" v-model="newName" :state="nameState" aria-describedby="input-live-help input-live-feedback" placeholder="Enter post name" trim></b-form-input>
+        <b-form-textarea id="textarea-default" size="20" v-model="newName" :state="nameState" aria-describedby="input-live-help input-live-feedback" placeholder="Enter post name" trim></b-form-textarea>
 
         <!-- This will only be shown if the preceding input has an invalid state -->
         <b-form-invalid-feedback id="input-live-feedback">
@@ -11,7 +10,7 @@
         </b-form-invalid-feedback>
 
         <label for="input-live">Youtube ID:</label>
-        <b-form-input id="input-live" v-model="newYT" :state="ytState" aria-describedby="input-live-help input-live-feedback" placeholder="Enter post name" trim></b-form-input>
+        <b-form-input id="input-live" size="20" v-model="newYT" :state="ytState" aria-describedby="input-live-help input-live-feedback" placeholder="Enter post Youtube ID" trim></b-form-input>
 
         <!-- This will only be shown if the preceding input has an invalid state -->
         <b-form-invalid-feedback id="input-live-feedback">
@@ -29,32 +28,31 @@
         <b-button variant="outline-success" @click="addPost">
             Add Post
         </b-button>
-    </div>
+    </b-card>
     <br /><br />
-    <md-table md-card class="container-fluid md-elevation-12">
-        <md-table-toolbar>
-            <h1 class="md-title">Posts</h1>
-        </md-table-toolbar>
+    <b-card border-variant="info" header="Posts" align="center" class="container-fluid md-elevation-12">
+        <md-table md-card class="container-fluid md-elevation-12">
 
-        <md-table-row align="left">
-            <md-table-head>Name</md-table-head>
-            <md-table-head>Youtube ID</md-table-head>
-            <md-table-head>Tag</md-table-head>
-            <md-table-head>Edit/Delete</md-table-head>
-        </md-table-row>
+            <md-table-row align="left">
+                <md-table-head>Name</md-table-head>
+                <md-table-head>Youtube ID</md-table-head>
+                <md-table-head>Tag</md-table-head>
+                <md-table-head>Edit/Delete</md-table-head>
+            </md-table-row>
 
-        <md-table-row v-for="post in posts" v-bind:key="post.name" align="left">
-            <md-table-cell>{{ post.name }}</md-table-cell>
-            <md-table-cell>{{ post.yturl }}</md-table-cell>
-            <md-table-cell>{{ post.tag }}</md-table-cell>
-            <md-table-cell>
-                <b-button variant="outline-info">Edit</b-button>
-                <b-button variant="outline-danger" @click="deletePost(post)">
-                    Remove
-                </b-button>
-            </md-table-cell>
-        </md-table-row>
-    </md-table>
+            <md-table-row v-for="post in posts" v-bind:key="post.name" align="left">
+                <md-table-cell>{{ post.name }}</md-table-cell>
+                <md-table-cell>{{ post.yturl }}</md-table-cell>
+                <md-table-cell>{{ post.tag }}</md-table-cell>
+                <md-table-cell>
+                    <b-button variant="outline-info">Edit</b-button>
+                    <b-button variant="outline-danger" @click="deletePost(post)">
+                        Remove
+                    </b-button>
+                </md-table-cell>
+            </md-table-row>
+        </md-table>
+    </b-card>
 </div>
 </template>
 
@@ -115,8 +113,17 @@ export default {
     margin-top: 60px;
 }
 
-.md-table {
-    width: 1000px;
-    padding: 15px;
+.card-add {
+    width: 500px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-post {
+    width: 800px;
+    position: relative;
+    margin-left: 50%;
+    margin-right: 50%;
 }
 </style>
