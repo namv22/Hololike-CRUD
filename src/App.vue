@@ -60,6 +60,7 @@
 import {
     db
 } from './firebase';
+import _ from 'lodash';
 
 export default {
     name: 'TableCard',
