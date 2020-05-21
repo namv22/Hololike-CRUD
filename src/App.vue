@@ -40,7 +40,7 @@
                 <md-table-head>Edit/Delete</md-table-head>
             </md-table-row>
 
-            <md-table-row v-for="post in posts" v-bind:key="post.name" align="left">
+            <md-table-row v-for="post in orderedPosts" v-bind:key="post.name" align="left">
                 <md-table-cell>{{ post.name }}</md-table-cell>
                 <md-table-cell>{{ post.yturl }}</md-table-cell>
                 <md-table-cell>{{ post.tag }}</md-table-cell>
@@ -69,6 +69,9 @@ export default {
         },
         ytState() {
             return this.newYT.length > 0 ? true : false
+        },
+        orderedPosts: function () {
+            return _.orderBy(this.posts, ['date'], ['desc'])
         },
     },
     data() {
